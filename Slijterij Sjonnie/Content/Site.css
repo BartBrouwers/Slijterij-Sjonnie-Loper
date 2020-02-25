@@ -1,0 +1,24 @@
+﻿body {
+    background-color: #f9fafc !important;
+}
+
+.bg-body-light {
+    background-color: #f9fafc !important;
+    display: grid;
+}
+
+.bg-body-content {
+    margin-top: 2rem;
+    margin-bottom : 2rem;
+}
+
+.bg-submenu{
+    background-color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.submenu-body-content {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
