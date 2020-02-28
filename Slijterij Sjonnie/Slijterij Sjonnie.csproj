@@ -178,6 +178,10 @@
     <Compile Include="Migrations\202002251056135_Initial.designer.cs">
       <DependentUpon>202002251056135_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002280931146_UpdatedModels.cs" />
+    <Compile Include="Migrations\202002280931146_UpdatedModels.designer.cs">
+      <DependentUpon>202002280931146_UpdatedModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Etiket.cs" />
@@ -266,6 +270,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002251056135_Initial.resx">
       <DependentUpon>202002251056135_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002280931146_UpdatedModels.resx">
+      <DependentUpon>202002280931146_UpdatedModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
