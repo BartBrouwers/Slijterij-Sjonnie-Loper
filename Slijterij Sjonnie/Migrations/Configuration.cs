@@ -1,5 +1,7 @@
 ﻿namespace Slijterij_Sjonnie.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Slijterij_Sjonnie.Models;
     using System;
     using System.Data.Entity;
@@ -26,6 +28,38 @@
 
         protected override void Seed(Slijterij_Sjonnie.Models.ApplicationDbContext context)
         {
+
+
+            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            //if (!roleManager.RoleExists("Admin"))
+            //{
+            //    var role = new IdentityRole("Admin");
+            //    roleManager.Create(role);
+
+            //    try
+            //    {
+            //        var User = userManager.FindByEmail("admin@admin.nl");
+            //        userManager.AddToRole(User.Id, "Admin");
+            //    }
+            //    catch (System.Exception)
+            //    {
+            //        var User = new ApplicationUser();
+            //        User.UserName = "admin@admin.nl";
+            //        User.Email = "admin@admin.nl";
+            //        string pwd = "admin";
+            //        var checkUser = userManager.Create(User, pwd);
+            //        if (checkUser.Succeeded)
+            //        {
+            //            userManager.AddToRole(User.Id, "Admin");
+            //        }
+            //        else
+            //        {
+            //            throw;
+            //        }
+            //    }
+            //}
 
 
             var Whisky = new Models.Whisky
@@ -62,6 +96,23 @@
                 Leeftijd = DateTime.Now,
             };
 
+            var Whisky3 = new Models.Whisky
+            {
+                Id = 1,
+                Etiket = new Models.Etiket
+                {
+                    Id = 1,
+                    Naam = "Sjaakie Walker",
+                    Prijs = 22,
+                    Soort = Models.Etiket.SoortWhisky.Blend,
+                    AlcoholPercentage = 33,
+                    ProductieGebied = "Schotland",
+                    AfbeeldingPath = "../Content/Images/johhnie_walker.png"
+                },
+                Aantal = 18,
+                Leeftijd = DateTime.Now,
+            };
+
             var Reservatie = new Models.Reservering
             {
                 Id = 1,
@@ -71,8 +122,30 @@
                 Whisky = Whisky
             };
 
+            //var passwordHash = new PasswordHasher();
+            //string password = passwordHash.HashPassword("admin");
+
+            //var user = new ApplicationUser
+            //{
+            //    UserName = "admin@admin.nl",
+            //    PasswordHash = password,
+            //    PhoneNumber = "12345678911",
+            //    Email = "admin@admin.nl"
+      
+            //};
+
+            //context.Roles.AddOrUpdate(new IdentityRole { Id = "1", Name = "Admin", });
+
+            //var store = new UserStore<ApplicationUser>(context);
+            //var manager = new UserManager<ApplicationUser>(store);
+
+            //manager.Create(user, "admin");
+            //manager.AddToRole(user, "Admin");
+
+            context.Reserveringen.AddOrUpdate(Reservatie);
             context.Whiskies.AddOrUpdate(Whisky);
             context.Whiskies.AddOrUpdate(Whisky2);
+            context.Whiskies.AddOrUpdate(Whisky3);
             context.SaveChanges();
 
             //  This method will be called after migrating to the latest version.

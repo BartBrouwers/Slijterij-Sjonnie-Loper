@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WhiskyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,6 +186,14 @@
     <Compile Include="Migrations\202002281226030_AddedReservation.cs" />
     <Compile Include="Migrations\202002281226030_AddedReservation.designer.cs">
       <DependentUpon>202002281226030_AddedReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002281333209_IdentityUpdates.cs" />
+    <Compile Include="Migrations\202002281333209_IdentityUpdates.designer.cs">
+      <DependentUpon>202002281333209_IdentityUpdates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002281410332_WhiskyModelUpdate.cs" />
+    <Compile Include="Migrations\202002281410332_WhiskyModelUpdate.designer.cs">
+      <DependentUpon>202002281410332_WhiskyModelUpdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -255,6 +264,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_DashboardPartial.cshtml" />
+    <Content Include="Views\Whisky\Create.cshtml" />
+    <Content Include="Views\Whisky\Delete.cshtml" />
+    <Content Include="Views\Whisky\Details.cshtml" />
+    <Content Include="Views\Whisky\Edit.cshtml" />
+    <Content Include="Views\Whisky\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -281,6 +295,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002281226030_AddedReservation.resx">
       <DependentUpon>202002281226030_AddedReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002281333209_IdentityUpdates.resx">
+      <DependentUpon>202002281333209_IdentityUpdates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002281410332_WhiskyModelUpdate.resx">
+      <DependentUpon>202002281410332_WhiskyModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

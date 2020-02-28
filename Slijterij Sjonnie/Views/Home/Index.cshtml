@@ -19,7 +19,7 @@
 
                             <!--Image-->
                             <div class="view overlay z-depth-1-half">
-                                <img src=" @Model.Select(x => x.Etiket.AfbeeldingPath).FirstOrDefault()" class="img-fluid"
+                                <img src="@Url.Content(@Model.Select(x => x.Etiket.AfbeeldingPath).FirstOrDefault())" class="img-fluid"
                                      alt="">
                                 <a href="#">
                                     <div class="mask rgba-white-slight"></div>
