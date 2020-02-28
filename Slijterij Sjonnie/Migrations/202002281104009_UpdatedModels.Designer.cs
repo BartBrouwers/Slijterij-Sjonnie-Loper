@@ -13,7 +13,7 @@ namespace Slijterij_Sjonnie.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202002280931146_UpdatedModels"; }
+            get { return "202002281104009_UpdatedModels"; }
         }
         
         string IMigrationMetadata.Source

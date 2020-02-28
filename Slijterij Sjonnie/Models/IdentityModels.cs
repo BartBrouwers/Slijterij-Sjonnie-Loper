@@ -22,7 +22,7 @@ namespace Slijterij_Sjonnie.Models
     {
         public DbSet<Whisky> Whiskies { get; set; }
         public DbSet<Etiket> Etiketten { get; set; }
-        public DbSet<Voorraad> Voorraden { get; set; }
+        public DbSet<Reservering> Reserveringen { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

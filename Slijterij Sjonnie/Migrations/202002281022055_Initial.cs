@@ -13,7 +13,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Naam = c.String(nullable: false),
-                        Leeftijd = c.DateTime(nullable: false),
+                        Leeftijd = c.Int(nullable: false),
                         ProductieGebied = c.String(nullable: false),
                         AlcoholPercentage = c.Int(nullable: false),
                         Soort = c.Int(nullable: false),
@@ -90,40 +90,27 @@
                 .Index(t => t.UserId);
             
             CreateTable(
-                "dbo.Voorraads",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Aantal = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.Whiskies",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Prijs = c.Double(nullable: false),
+                        Aantal = c.Int(nullable: false),
                         Etiket_Id = c.Int(nullable: false),
-                        Voorraad_Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Etikets", t => t.Etiket_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Voorraads", t => t.Voorraad_Id, cascadeDelete: true)
-                .Index(t => t.Etiket_Id)
-                .Index(t => t.Voorraad_Id);
+                .Index(t => t.Etiket_Id);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Whiskies", "Voorraad_Id", "dbo.Voorraads");
             DropForeignKey("dbo.Whiskies", "Etiket_Id", "dbo.Etikets");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropIndex("dbo.Whiskies", new[] { "Voorraad_Id" });
             DropIndex("dbo.Whiskies", new[] { "Etiket_Id" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
@@ -132,7 +119,6 @@
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropTable("dbo.Whiskies");
-            DropTable("dbo.Voorraads");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
