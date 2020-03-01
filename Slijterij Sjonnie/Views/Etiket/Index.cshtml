@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Slijterij_Sjonnie.Models.Etiket>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_EtiketDashboardPartial")
+
+    <div class="container bg-body-content">
+        <div class="card">
+            <div class="card-body">
+                <table style="margin-top: 10px;" class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Naam)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProductieGebied)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AlcoholPercentage)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Prijs)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Soort)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AfbeeldingPath)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Naam)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductieGebied)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AlcoholPercentage)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Prijs)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Soort)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AfbeeldingPath)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>
+                            </tr>
+                        }
+
+                </table>
+                </div>
+            </div>
+        </div>

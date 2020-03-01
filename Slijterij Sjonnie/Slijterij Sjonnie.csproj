@@ -169,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EtiketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\WhiskyController.cs" />
@@ -269,6 +270,12 @@
     <Content Include="Views\Whisky\Details.cshtml" />
     <Content Include="Views\Whisky\Edit.cshtml" />
     <Content Include="Views\Whisky\Index.cshtml" />
+    <Content Include="Views\Etiket\Create.cshtml" />
+    <Content Include="Views\Etiket\Delete.cshtml" />
+    <Content Include="Views\Etiket\Details.cshtml" />
+    <Content Include="Views\Etiket\Edit.cshtml" />
+    <Content Include="Views\Etiket\Index.cshtml" />
+    <Content Include="Views\Etiket\_EtiketDashboardPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

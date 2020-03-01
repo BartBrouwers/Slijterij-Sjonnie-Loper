@@ -10,117 +10,107 @@ using Slijterij_Sjonnie.Models;
 
 namespace Slijterij_Sjonnie.Controllers
 {
-    
-    public class WhiskyController : Controller
+    public class EtiketController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Whisky
-        [AllowAnonymous]
+        // GET: Etiket
         public ActionResult Index()
         {
-            return View(db.Whiskies.ToList());
+            return View(db.Etiketten.ToList());
         }
 
-
-        // GET: Whisky/Details/5
+        // GET: Etiket/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Whisky whisky = db.Whiskies.Find(id);
-            if (whisky == null)
+            Etiket etiket = db.Etiketten.Find(id);
+            if (etiket == null)
             {
                 return HttpNotFound();
             }
-            return View(whisky);
+            return View(etiket);
         }
 
-        // GET: Whisky/Create
-        [Authorize(Roles = "Admin")]
+        // GET: Etiket/Create
         public ActionResult Create()
         {
-            ViewBag.Etiketten = new SelectList(db.Etiketten, "Id", "Naam");
             return View();
         }
 
-        // POST: Whisky/Create
+        // POST: Etiket/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Leeftijd,Aantal")] Whisky whisky, Etiket etiket)
+        public ActionResult Create([Bind(Include = "Id,Naam,ProductieGebied,AlcoholPercentage,Prijs,Soort,AfbeeldingPath")] Etiket etiket)
         {
             if (ModelState.IsValid)
             {
-                db.Whiskies.Add(whisky);
+                db.Etiketten.Add(etiket);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(whisky);
+            return View(etiket);
         }
 
-        // GET: Whisky/Edit/5
-        [Authorize(Roles = "Admin")]
+        // GET: Etiket/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Whisky whisky = db.Whiskies.Find(id);
-            if (whisky == null)
+            Etiket etiket = db.Etiketten.Find(id);
+            if (etiket == null)
             {
                 return HttpNotFound();
             }
-            return View(whisky);
+            return View(etiket);
         }
 
-        // POST: Whisky/Edit/5
+        // POST: Etiket/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Leeftijd,Aantal")] Whisky whisky)
+        public ActionResult Edit([Bind(Include = "Id,Naam,ProductieGebied,AlcoholPercentage,Prijs,Soort,AfbeeldingPath")] Etiket etiket)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(whisky).State = EntityState.Modified;
+                db.Entry(etiket).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(whisky);
+            return View(etiket);
         }
 
-        // GET: Whisky/Delete/5
-        [Authorize(Roles = "Admin")]
+        // GET: Etiket/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Whisky whisky = db.Whiskies.Find(id);
-            if (whisky == null)
+            Etiket etiket = db.Etiketten.Find(id);
+            if (etiket == null)
             {
                 return HttpNotFound();
             }
-            return View(whisky);
+            return View(etiket);
         }
 
-        // POST: Whisky/Delete/5
-        [Authorize(Roles = "Admin")]
+        // POST: Etiket/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Whisky whisky = db.Whiskies.Find(id);
-            db.Whiskies.Remove(whisky);
+            Etiket etiket = db.Etiketten.Find(id);
+            db.Etiketten.Remove(etiket);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
