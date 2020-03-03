@@ -40,5 +40,12 @@ namespace Slijterij_Sjonnie.Controllers
 
             return View(db.Whiskies.Include(x => x.Etiket).ToList());
         }
+
+        [HttpPost]
+        public ActionResult Reservering(int? id, int aantal)
+        {
+            var test = id;
+            return View(db.Whiskies.Include(x => x.Etiket).ToList());
+        }
     }
 }
