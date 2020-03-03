@@ -7,13 +7,13 @@ namespace Slijterij_Sjonnie.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class UpdatedModels : IMigrationMetadata
+    public sealed partial class AddedReservation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatedModels));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedReservation));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002280931146_UpdatedModels"; }
+            get { return "202002281226030_AddedReservation"; }
         }
         
         string IMigrationMetadata.Source

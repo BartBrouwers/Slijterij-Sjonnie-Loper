@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -16,11 +17,13 @@ namespace Slijterij_Sjonnie.Models
         [Required]
         public int AlcoholPercentage { get; set; }
         [Required]
-        public SoortWhisky Soort { get; set; }
-        [Required]
         public double Prijs { get; set; }
         [Required]
-        public byte[] Afbeelding { get; set; }
+        public SoortWhisky Soort { get; set; }
+        [Required]
+        public string AfbeeldingPath { get; set; }
+        [NotMapped]
+        public HttpPostedFileBase AfbeeldingBestand { get; set; }
 
 
         public enum SoortWhisky

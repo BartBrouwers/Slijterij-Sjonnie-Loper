@@ -1,16 +1,24 @@
-﻿using System;
+﻿using Slijterij_Sjonnie.Models;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace Slijterij_Sjonnie.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            return View();
+            var test = db.Whiskies.Include(x => x.Etiket).ToList();
+            return View(test);
         }
 
         public ActionResult About()

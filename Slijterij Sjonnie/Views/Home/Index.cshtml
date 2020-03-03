@@ -1,118 +1,120 @@
-﻿@{
+﻿@model IEnumerable<Slijterij_Sjonnie.Models.Whisky>
+
+@{
     ViewBag.Title = "Home Page";
 }
-    @Html.Partial("_DashboardPartial")
+@Html.Partial("_DashboardPartial")
 
-    <div class="container bg-body-content">
+<div class="container bg-body-content">
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <!--Grid row-->
-                        <div class="row">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <!--Grid row-->
+                    <div class="row">
 
-                            <!--Grid column-->
-                            <div class="col-lg-6 mb-lg-0 mb-md-4">
+                        <!--Grid column-->
+                        <div class="col-lg-6 mb-lg-0 mb-md-4">
 
-                                <!--Image-->
-                                <div class="view overlay z-depth-1-half">
-                                    <img src="https://acadianakarate.com/wp-content/uploads/2017/04/default-image.jpg" class="img-fluid"
-                                         alt="">
-                                    <a href="#">
-                                        <div class="mask rgba-white-slight"></div>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <!--Grid column-->
-                            <!--Grid column-->
-                            <!--
-
-                            Meest verkochte / gereserveerde whiskie.
-                            -->
-
-                            <div class="col-lg-6 ">
-
-                                <h3 class="font-weight-bold">De beste whisky</h3>
-
-                                <p class="text-muted">
-                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente molestiae
-                                    numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam.
-                                </p>
-
-                                <a class="btn btn-info btn-md waves-effect" href="#" role="button">
-                                    Koop nu<i class="fa fa-download ml-1"></i>
+                            <!--Image-->
+                            <div class="view overlay z-depth-1-half">
+                                <img src="@Url.Content(@Model.Select(x => x.Etiket.AfbeeldingPath).FirstOrDefault())" class="img-fluid"
+                                     alt="">
+                                <a href="#">
+                                    <div class="mask rgba-white-slight"></div>
                                 </a>
-
                             </div>
-                            <!--Grid column-->
 
                         </div>
-                        <!--Grid row-->
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <!--
 
-                    </div>
-                </div>
-            </div>
+                        Meest verkochte / gereserveerde whiskie.
+                        -->
 
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
+                        <div class="col-lg-6 ">
 
-                        <h5 class="text-center font-weight-bold mb-4">De nieuwste whiskies.</h5>
+                            <h3 class="font-weight-bold">De beste whisky</h3>
 
-                        <hr>
+                            <p class="text-muted">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente molestiae
+                                numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam.
+                            </p>
 
-                        <!--Grid row-->
-                        <div class="row">
-
-                            <!--Grid column-->
-                            <!--
-                                
-                            Lijst met whiskies
-                            -->
-                            <div class="col-12 mb-3 mx-auto">
-
-                                <div class="media">
-                                    <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-                                    <div class="media-body">
-                                        <h6 class="mt-1 font-weight-bold"><a href="#!">Whiskie 1</a><a><span class="badge badge-warning float-right">€24</span></a></h6>
-                                        <p class="text-muted">Soort:    | Leeftijd, etc</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="media">
-                                    <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-                                    <div class="media-body">
-                                        <h6 class="mt-1 font-weight-bold"><a href="#!">Whiskie 2</a><a><span class="badge badge-warning float-right">€24</span></a></h6>
-                                        <p class="text-muted">Soort:    | Leeftijd, etc</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="media">
-                                    <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-                                    <div class="media-body">
-                                        <h6 class="mt-1 font-weight-bold"><a href="#!">Whiskie 3</a><a><span class="badge badge-warning float-right">€24</span></a></h6>
-                                        <p class="text-muted">Soort:    | Leeftijd, etc</p>
-                                    </div>
-                                </div>
-                                <hr>
-
-
-                            </div>
-                            <!--Grid column-->
+                            <a class="btn btn-info btn-md waves-effect" href="#" role="button">
+                                Koop nu<i class="fa fa-download ml-1"></i>
+                            </a>
 
                         </div>
-                        <!--Grid row-->
-
-
-                        <p class="text-center mt-4 mb-1"><a href="#!">Bekijk alle whiskies</a></p>
-
+                        <!--Grid column-->
 
                     </div>
+                    <!--Grid row-->
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+
+                    <h5 class="text-center font-weight-bold mb-4">De nieuwste whiskies.</h5>
+
+                    <hr>
+
+                    <!--Grid row-->
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <!--
+
+                        Lijst met whiskies
+                        -->
+                        <div class="col-12 mb-3 mx-auto">
+
+                            <div class="media">
+                                <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <h6 class="mt-1 font-weight-bold"><a href="#!">Whiskie 1</a><a><span class="badge badge-warning float-right">€24</span></a></h6>
+                                    <p class="text-muted">Soort:    | Leeftijd, etc</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="media">
+                                <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <h6 class="mt-1 font-weight-bold"><a href="#!">Whiskie 2</a><a><span class="badge badge-warning float-right">€24</span></a></h6>
+                                    <p class="text-muted">Soort:    | Leeftijd, etc</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="media">
+                                <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
+                                <div class="media-body">
+                                    <h6 class="mt-1 font-weight-bold"><a href="#!">Whiskie 3</a><a><span class="badge badge-warning float-right">€24</span></a></h6>
+                                    <p class="text-muted">Soort:    | Leeftijd, etc</p>
+                                </div>
+                            </div>
+                            <hr>
+
+
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+
+
+                    <p class="text-center mt-4 mb-1"><a href="#!">Bekijk alle whiskies</a></p>
 
 
                 </div>
 
+
             </div>
-            </div>
+
+        </div>
+    </div>

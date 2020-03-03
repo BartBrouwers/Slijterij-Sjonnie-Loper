@@ -1,21 +1,54 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+@if (Request.IsAuthenticated && this.User.IsInRole("Admin"))
+{
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index", "Whisky")">Whiskies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index", "Etiket")">Etiketten</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="@Url.Action("Index", "Reservering")">Reserveringen</a>
+        </li>
+    </ul>
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="navbar-nav ml-auto">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { style = "margin-right: 8px;", @class = "btn btn-secondary", title = "Manage" })
+            </li>
+            <li><a class="btn btn-danger" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+
+}
+else if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "btn btn-secondary", title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <ul class="navbar-nav ml-auto">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { style = "margin-right: 8px;", @class = "btn btn-secondary", title = "Manage" })
+            </li>
+            <li><a class="btn btn-danger" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+
+        
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+
+    <ul class="navbar-nav ml-auto">
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { style = "margin-right: 8px;", @class = "btn btn-secondary", id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-secondary", id = "loginLink" })</li>
     </ul>
