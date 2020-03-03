@@ -12,8 +12,8 @@ namespace Slijterij_Sjonnie.Models
         [Required]
         public Etiket Etiket { get; set; }
         [Required]
-        public double Prijs { get; set; }
+        public DateTime Leeftijd { get; set; }
         [Required]
-        public Voorraad Voorraad { get; set; }
+        public int Aantal { get; set; }
     }
 }
