@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,14 +47,25 @@ namespace Slijterij_Sjonnie.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Naam,ProductieGebied,AlcoholPercentage,Prijs,Soort,AfbeeldingPath")] Etiket etiket)
+        public ActionResult Create([Bind(Include = "Id,Naam,ProductieGebied,AlcoholPercentage,Prijs,Soort,AfbeeldingBestand")] Etiket etiket)
         {
+
+
+            string fileName = Path.GetFileNameWithoutExtension(etiket.AfbeeldingBestand.FileName);
+            string extension = Path.GetExtension(etiket.AfbeeldingBestand.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            etiket.AfbeeldingPath = "~/Content/Images/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/Content/Images/"), fileName);
+            etiket.AfbeeldingBestand.SaveAs(fileName);
+
+
             if (ModelState.IsValid)
             {
                 db.Etiketten.Add(etiket);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            var errors = ModelState.Values.SelectMany(v => v.Errors);
 
             return View(etiket);
         }

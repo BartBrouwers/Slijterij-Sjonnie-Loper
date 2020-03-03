@@ -43,7 +43,8 @@ namespace Slijterij_Sjonnie.Controllers
         public ActionResult Create()
         {
             ViewBag.Etiketten = new SelectList(db.Etiketten, "Id", "Naam");
-            return View();
+            var newWhiskey = new Whisky { Etiket = db.Etiketten.FirstOrDefault() };
+            return View(newWhiskey);
         }
 
         // POST: Whisky/Create
@@ -52,13 +53,20 @@ namespace Slijterij_Sjonnie.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Leeftijd,Aantal")] Whisky whisky, Etiket etiket)
+        public ActionResult Create([Bind(Include = "Id,Etiket,EtiketId,Leeftijd,Aantal")] Whisky whisky)
         {
+
+            whisky.Etiket = db.Etiketten.FirstOrDefault(e => e.Id == whisky.EtiketId);
             if (ModelState.IsValid)
             {
                 db.Whiskies.Add(whisky);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                var x = ModelState.Values;
+                ViewBag.Etiketten = new SelectList(db.Etiketten, "Id", "Naam");
             }
 
             return View(whisky);

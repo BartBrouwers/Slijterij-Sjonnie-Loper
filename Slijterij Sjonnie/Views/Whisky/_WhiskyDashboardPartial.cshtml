@@ -1,0 +1,23 @@
+﻿<div class="bg-body-light">
+    <div class="bg-body-content text-center">
+        <h1 class="mb-2">Welkom @User.Identity.Name</h1>
+        <h2 class="h4 font-w400 text-muted mb-0">Dit is het Whisky dashboard!</h2>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index", "Etiket")">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Create", "Etiket")">Create</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Delete", "Etiket")">Delete</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+

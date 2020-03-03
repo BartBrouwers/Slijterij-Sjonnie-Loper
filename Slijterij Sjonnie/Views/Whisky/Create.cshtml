@@ -17,10 +17,11 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-
+    @*<label type="hi" id="Etiket" name="Etiket" value=@Model.Etiket/>*@
+    @Html.EditorFor( model => model.Etiket, new { @style = "display:none"})
     <div class="form-group">
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Etiket, ViewBag.Etiketten as SelectList, new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.EtiketId, ViewBag.Etiketten as SelectList, new { @class = "form-control" })
 
         </div>
     </div>
