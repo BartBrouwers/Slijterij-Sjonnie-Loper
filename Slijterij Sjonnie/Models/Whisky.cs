@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -15,5 +16,7 @@ namespace Slijterij_Sjonnie.Models
         public DateTime Leeftijd { get; set; }
         [Required]
         public int Aantal { get; set; }
+        [NotMapped]
+        public int EtiketId { get; set; }
     }
 }

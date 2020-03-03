@@ -20,7 +20,6 @@ namespace Slijterij_Sjonnie.Models
         public double Prijs { get; set; }
         [Required]
         public SoortWhisky Soort { get; set; }
-        [Required]
         public string AfbeeldingPath { get; set; }
         [NotMapped]
         public HttpPostedFileBase AfbeeldingBestand { get; set; }

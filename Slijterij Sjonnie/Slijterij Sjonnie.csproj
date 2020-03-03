@@ -196,6 +196,10 @@
     <Compile Include="Migrations\202002281410332_WhiskyModelUpdate.designer.cs">
       <DependentUpon>202002281410332_WhiskyModelUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003021819368_ModelChange.cs" />
+    <Compile Include="Migrations\202003021819368_ModelChange.designer.cs">
+      <DependentUpon>202003021819368_ModelChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Etiket.cs" />
@@ -276,6 +280,8 @@
     <Content Include="Views\Etiket\Edit.cshtml" />
     <Content Include="Views\Etiket\Index.cshtml" />
     <Content Include="Views\Etiket\_EtiketDashboardPartial.cshtml" />
+    <Content Include="Views\Whisky\_WhiskyDashboardPartial.cshtml" />
+    <Content Include="Views\Home\Reservering.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -308,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002281410332_WhiskyModelUpdate.resx">
       <DependentUpon>202002281410332_WhiskyModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003021819368_ModelChange.resx">
+      <DependentUpon>202003021819368_ModelChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
