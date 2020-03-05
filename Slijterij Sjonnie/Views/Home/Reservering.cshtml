@@ -10,121 +10,69 @@
 <h2>Reservering</h2>
 
 
+
+<div class="container bg-body-content">
+
     <div class="row">
-                    <!--Grid row-->
-                    <div class="row">
+        <!--Grid row-->
 
-                        <!--Grid column-->
-                        @foreach (var item in Model)
-                        {
-                            <div class="col-sm-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-
-                                            <!--Grid column-->
-                                            <div class="col-lg-6 mb-lg-0 mb-md-4">
+            @foreach (var item in Model)
+            {
 
 
+                <div style="margin-bottom: 25px;" class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
 
-                                                <!--Image-->
-                                                <div class="view overlay z-depth-1-half">
-                                                    <img src="@Url.Content(item.Etiket.AfbeeldingPath)" class="img-fluid"
-                                                         alt="">
-                                                    <a href="#">
-                                                        <div class="mask rgba-white-slight"></div>
-                                                    </a>
-                                                </div>
+                                <!--Grid column-->
+                                <div class="col-lg-6 mb-lg-0 mb-md-4">
 
-                                            </div>
 
-                                            <div class="col-lg-6 ">
 
-                                                <h3 class="font-weight-bold">@item.Etiket.Naam</h3>
-
-                                                <span class="text-black-50">Naam:</span><p class="text-muted"> @item.Etiket.Naam</p>
-                                                <span class="text-black-50">Soort:</span><p class="text-muted"> @item.Etiket.Soort</p>
-                                                <span class="text-black-50">Productiegebied:</span><p class="text-muted"> @item.Etiket.ProductieGebied</p>
-                                                <span class="text-black-50">Leeftijd:</span><p class="text-muted"> @item.Leeftijd.Date.Year</p>
-                                                <span class="text-black-50">Alcoholpercentage:</span><p class="text-muted"> @item.Etiket.AlcoholPercentage</p>
-                                                <span class="text-black-50">Prijs:</span><p class="text-muted"> €@item.Etiket.Prijs</p>
-
-                                                <a class="btn btn-info btn-md waves-effect" href="#" role="button">
-                                                    Koop nu<i class="fa fa-download ml-1"></i>
-                                                </a>
-
-                                            </div>
-                                        </div>
+                                    <!--Image-->
+                                    <div class="view overlay z-depth-1-half">
+                                        <img style="max-height: 340px;" src="@Url.Content(item.Etiket.AfbeeldingPath)" class="img-fluid"
+                                             alt="">
+                                        <a href="#">
+                                            <div class="mask rgba-white-slight"></div>
+                                        </a>
                                     </div>
+
+                                </div>
+
+                                <div class="col-lg-6 pre-scrollable">
+
+                                    <h3 class="font-weight-bold">@item.Etiket.Naam</h3>
+
+                                    <span class="text-black-50">Naam:</span><p class="text-muted"> @item.Etiket.Naam</p>
+                                    <span class="text-black-50">Soort:</span><p class="text-muted"> @item.Etiket.Soort</p>
+                                    <span class="text-black-50">Productiegebied:</span><p class="text-muted"> @item.Etiket.ProductieGebied</p>
+                                    <span class="text-black-50">Leeftijd:</span><p class="text-muted"> @item.Leeftijd.Date.Year</p>
+                                    <span class="text-black-50">Alcoholpercentage:</span><p class="text-muted"> @item.Etiket.AlcoholPercentage</p>
+                                    <span class="text-black-50">Prijs:</span><p class="text-muted"> €@item.Etiket.Prijs</p>
+                                    @using (Html.BeginForm(new { id = @item.Id }))
+                                    {
+                                        
+                                        <button class="btn btn-info btn-md waves-effect" type="submit" href="#" name="aantal">
+                                            Reserveer<i class="fa fa-download ml-1"></i>
+                                        </button>
+                                    }
+
                                 </div>
                             </div>
-                        }
-                        <!--Grid row-->
-
-                    </div>
-            </div>
-
-
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-
-                    <h5 class="text-center font-weight-bold mb-4">De nieuwste whiskies.</h5>
-
-                    <hr>
-
-                    <!--Grid row-->
-                    <div class="row">
-
-                        <!--Grid column-->
-                        <!--
-
-                        Lijst met whiskies
-                        -->
-                        <div class="col-12 mb-3 mx-auto">
-
-                            <div class="media">
-                                <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-                                <div class="media-body">
-                                    <h6 class="mt-1 font-weight-bold"><a href="#!">Whiskie 1</a><a><span class="badge badge-warning float-right">€24</span></a></h6>
-                                    <p class="text-muted">Soort:    | Leeftijd, etc</p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="media">
-                                <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-                                <div class="media-body">
-                                    <h6 class="mt-1 font-weight-bold"><a href="#!">Whiskie 2</a><a><span class="badge badge-warning float-right">€24</span></a></h6>
-                                    <p class="text-muted">Soort:    | Leeftijd, etc</p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="media">
-                                <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" alt="Generic placeholder image">
-                                <div class="media-body">
-                                    <h6 class="mt-1 font-weight-bold"><a href="#!">Whiskie 3</a><a><span class="badge badge-warning float-right">€24</span></a></h6>
-                                    <p class="text-muted">Soort:    | Leeftijd, etc</p>
-                                </div>
-                            </div>
-                            <hr>
-
-
                         </div>
-                        <!--Grid column-->
-
                     </div>
-                    <!--Grid row-->
-
-
-                    <p class="text-center mt-4 mb-1"><a href="#!">Bekijk alle whiskies</a></p>
-
-
                 </div>
 
-
-            </div>
+            }
+            <!--Grid row-->
 
         </div>
+    </div>
+
+
+
 
 
 
