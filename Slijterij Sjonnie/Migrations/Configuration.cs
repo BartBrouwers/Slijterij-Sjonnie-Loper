@@ -153,7 +153,7 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-
+            /*
             Etiket Etiket1 = new Etiket
             {
                 Naam = "FranseWijn",
@@ -173,6 +173,7 @@
 
             Whisky Whisky1 = new Whisky
             {
+
                 Etiket = Etiket1,
                 Prijs = 50,
                 Aantal = 2731
@@ -189,7 +190,7 @@
                 {
                     
                 }
-            };
+            };*/
         }
     }
 }
