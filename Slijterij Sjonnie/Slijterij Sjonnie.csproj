@@ -209,6 +209,7 @@
     <Compile Include="Models\Whisky.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ReserveringViewModel.cs" />
     <Compile Include="ViewModels\WhiskyViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -282,7 +283,10 @@
     <Content Include="Views\Etiket\Index.cshtml" />
     <Content Include="Views\Etiket\_EtiketDashboardPartial.cshtml" />
     <Content Include="Views\Whisky\_WhiskyDashboardPartial.cshtml" />
+    <Content Include="Views\Home\Reserveringen.cshtml" />
+    <Content Include="Views\Home\Whiskies.cshtml" />
     <Content Include="Views\Home\Reservering.cshtml" />
+    <Content Include="Views\Home\Reserveer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Slijterij_Sjonnie.Models.Whisky>
+﻿
 @if (Request.IsAuthenticated)
 {
     <div class="bg-body-light">
@@ -40,19 +40,18 @@ else
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Whiskies</a>
+                    <a class="nav-link" href="@Url.Action("Whiskies", "Home")">Whiskies</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Reservering</a>
+                    <a class="nav-link" href="@Url.Action("Reservering", "Home")">Reservering</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Over ons</a>
                 </li>
             </ul>
-
         </div>
     </nav>
 }
