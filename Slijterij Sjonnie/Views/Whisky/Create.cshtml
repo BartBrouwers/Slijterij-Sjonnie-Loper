@@ -21,7 +21,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.AlleEtiketten, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.SelectEtiketId, Model.AlleEtiketten, new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.SelectEtiketId, new SelectList(Model.AlleEtiketten, "Id", "Naam"), new { @class = "form-control" })
         </div>
     </div>
 
