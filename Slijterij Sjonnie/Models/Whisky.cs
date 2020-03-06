@@ -18,8 +18,6 @@ namespace Slijterij_Sjonnie.Models
         public DateTime Leeftijd { get; set; }
         [Required]
         public int Aantal { get; set; }
-        [NotMapped]
-        public int EtiketId { get; set; }
 
         public Whisky()
         {

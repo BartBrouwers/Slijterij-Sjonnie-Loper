@@ -31,22 +31,30 @@ namespace Slijterij_Sjonnie.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Whisky whisky = db.Whiskies.Find(id);
+            Whisky whisky = db.Whiskies.Where(w => w.Id == id).Include(f => f.Etiket).FirstOrDefault();
             if (whisky == null)
             {
                 return HttpNotFound();
             }
-            return View(whisky);
+            WhiskyViewModel model = new WhiskyViewModel()
+            {
+                Aantal = whisky.Aantal,
+                Leeftijd = whisky.Leeftijd,
+                Etiket = whisky.Etiket,
+                Naam = whisky.Etiket.Naam,
+                Id = whisky.Id
+            };
+            return View(model);
         }
 
         // GET: Whisky/Create
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            //ViewBag.Etiketten = new SelectList(db.Etiketten, "Id", "Naam");
-            //var newWhiskey = new Whisky { Etiket = db.Etiketten.FirstOrDefault() };
-            WhiskyViewModel model = new WhiskyViewModel();
-            model.AlleEtiketten = new SelectList(db.Etiketten.ToList(),"Id","Naam");
+            WhiskyViewModel model = new WhiskyViewModel
+            {
+                AlleEtiketten = db.Etiketten.ToList()
+            };
 
             return View(model);
         }
@@ -59,8 +67,10 @@ namespace Slijterij_Sjonnie.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,SelectEtiketId,Leeftijd,Aantal")] WhiskyViewModel whiskyVM)
         {
-            Whisky whisky = new Whisky(whiskyVM);
-            whisky.Etiket = db.Etiketten.FirstOrDefault(e => e.Id == whiskyVM.SelectEtiketId);
+            Whisky whisky = new Whisky(whiskyVM)
+            {
+                Etiket = db.Etiketten.FirstOrDefault(e => e.Id == whiskyVM.SelectEtiketId)
+            };
             if (ModelState.IsValid)
             {
                 db.Whiskies.Add(whisky);
@@ -84,7 +94,7 @@ namespace Slijterij_Sjonnie.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Whisky whisky = db.Whiskies.Find(id);
+            Whisky whisky = db.Whiskies.Where(w => w.Id == id).Include(f => f.Etiket).FirstOrDefault();
             if (whisky == null)
             {
                 return HttpNotFound();
@@ -93,9 +103,12 @@ namespace Slijterij_Sjonnie.Controllers
             {
                 Aantal = whisky.Aantal,
                 Leeftijd = whisky.Leeftijd,
-                Id = whisky.Etiket.Id
+                Id = whisky.Id,
+                Etiket = whisky.Etiket,
+                AlleEtiketten = db.Etiketten.ToList(),
+                Naam = whisky.Etiket.Naam
             };
-            model.AlleEtiketten = new SelectList(db.Etiketten.ToList(), "Id", "Naam");
+            model.SelectEtiketId = whisky.Etiket.Id;
             return View(model);
         }
 
@@ -105,17 +118,32 @@ namespace Slijterij_Sjonnie.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Leeftijd,Aantal")] Whisky whisky)
+        public ActionResult Edit([Bind(Include = "Id,SelectEtiketId,Leeftijd,Aantal")] WhiskyViewModel whiskyVM)
         {
+            Whisky whisky = db.Whiskies.FirstOrDefault(w => w.Id == whiskyVM.Id);
+            whisky.Aantal = whiskyVM.Aantal;
+            whisky.Leeftijd = whiskyVM.Leeftijd;
+            whisky.Etiket = db.Etiketten.FirstOrDefault(e => e.Id == whiskyVM.SelectEtiketId);
+
+            //    new Whisky(whiskyVM)
+            //{
+            //    Etiket = db.Etiketten.FirstOrDefault(e => e.Id == whiskyVM.SelectEtiketId),
+            //    Id = whiskyVM.Id
+            //};
             if (ModelState.IsValid)
             {
                 db.Entry(whisky).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            else
+            {
+                var x = ModelState.Values;
+                ViewBag.Etiketten = new SelectList(db.Etiketten, "Id", "Naam");
+            }
             return View(whisky);
         }
-
+        /*
         // GET: Whisky/Delete/5
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
@@ -143,7 +171,7 @@ namespace Slijterij_Sjonnie.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1,4 +1,4 @@
-﻿@model Slijterij_Sjonnie.Models.Whisky
+﻿@model Slijterij_Sjonnie.ViewModels.WhiskyViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,6 +11,14 @@
     <h4>Whisky</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naam)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Leeftijd)
         </dt>

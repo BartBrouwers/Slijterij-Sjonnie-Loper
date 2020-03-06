@@ -16,19 +16,18 @@
         <h4>Whisky</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.SelectEtiketId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.AlleEtiketten, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Etiket, Model.AlleEtiketten, new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.SelectEtiketId, new SelectList(Model.AlleEtiketten, "Id", "Naam", Model.Etiket.Naam), new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Leeftijd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Leeftijd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Leeftijd, new { htmlAttributes = new { @class = "form-control"} })
                 @Html.ValidationMessageFor(model => model.Leeftijd, "", new { @class = "text-danger" })
             </div>
         </div>
