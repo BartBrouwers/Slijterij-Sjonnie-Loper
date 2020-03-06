@@ -1,4 +1,4 @@
-﻿@model Slijterij_Sjonnie.Models.Whisky
+﻿@model Slijterij_Sjonnie.ViewModels.WhiskyViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -18,11 +18,10 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     @*<label type="hi" id="Etiket" name="Etiket" value=@Model.Etiket/>*@
-    @Html.EditorFor( model => model.Etiket, new { @style = "display:none"})
     <div class="form-group">
+        @Html.LabelFor(model => model.AlleEtiketten, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.EtiketId, ViewBag.Etiketten as SelectList, new { @class = "form-control" })
-
+            @Html.DropDownListFor(model => model.SelectEtiketId, Model.AlleEtiketten, new { @class = "form-control" })
         </div>
     </div>
 

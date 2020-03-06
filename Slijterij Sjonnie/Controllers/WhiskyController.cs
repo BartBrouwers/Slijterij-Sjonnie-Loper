@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Slijterij_Sjonnie.Models;
+using Slijterij_Sjonnie.ViewModels;
 
 namespace Slijterij_Sjonnie.Controllers
 {
@@ -42,9 +43,12 @@ namespace Slijterij_Sjonnie.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            ViewBag.Etiketten = new SelectList(db.Etiketten, "Id", "Naam");
-            var newWhiskey = new Whisky { Etiket = db.Etiketten.FirstOrDefault() };
-            return View(newWhiskey);
+            //ViewBag.Etiketten = new SelectList(db.Etiketten, "Id", "Naam");
+            //var newWhiskey = new Whisky { Etiket = db.Etiketten.FirstOrDefault() };
+            WhiskyViewModel model = new WhiskyViewModel();
+            model.AlleEtiketten = new SelectList(db.Etiketten.ToList(),"Id","Naam");
+
+            return View(model);
         }
 
         // POST: Whisky/Create
@@ -53,10 +57,10 @@ namespace Slijterij_Sjonnie.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Etiket,EtiketId,Leeftijd,Aantal")] Whisky whisky)
+        public ActionResult Create([Bind(Include = "Id,SelectEtiketId,Leeftijd,Aantal")] WhiskyViewModel whiskyVM)
         {
-
-            whisky.Etiket = db.Etiketten.FirstOrDefault(e => e.Id == whisky.EtiketId);
+            Whisky whisky = new Whisky(whiskyVM);
+            whisky.Etiket = db.Etiketten.FirstOrDefault(e => e.Id == whiskyVM.SelectEtiketId);
             if (ModelState.IsValid)
             {
                 db.Whiskies.Add(whisky);
@@ -85,7 +89,14 @@ namespace Slijterij_Sjonnie.Controllers
             {
                 return HttpNotFound();
             }
-            return View(whisky);
+            WhiskyViewModel model = new WhiskyViewModel()
+            {
+                Aantal = whisky.Aantal,
+                Leeftijd = whisky.Leeftijd,
+                Id = whisky.Etiket.Id
+            };
+            model.AlleEtiketten = new SelectList(db.Etiketten.ToList(), "Id", "Naam");
+            return View(model);
         }
 
         // POST: Whisky/Edit/5

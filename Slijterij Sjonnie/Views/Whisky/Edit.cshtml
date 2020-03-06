@@ -1,4 +1,4 @@
-﻿@model Slijterij_Sjonnie.Models.Whisky
+﻿@model Slijterij_Sjonnie.ViewModels.WhiskyViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -16,7 +16,14 @@
         <h4>Whisky</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.SelectEtiketId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AlleEtiketten, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Etiket, Model.AlleEtiketten, new { @class = "form-control" })
+            </div>
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Leeftijd, htmlAttributes: new { @class = "control-label col-md-2" })
