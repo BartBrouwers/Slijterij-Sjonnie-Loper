@@ -17,10 +17,31 @@ namespace Slijterij_Sjonnie.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Whisky
-        [AllowAnonymous]
         public ActionResult Index()
         {
-            return View(db.Whiskies.ToList());
+            WhiskyViewModel data = new WhiskyViewModel();
+            data.Whiskies = db.Whiskies.Include(x => x.Etiket).ToList();
+
+
+            return View(data);
+        }
+
+        [HttpPost]
+
+        public ActionResult Index(string searchString)
+        {
+            WhiskyViewModel data = new WhiskyViewModel();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                data.Whiskies = db.Whiskies.Include(x => x.Etiket).Where(s => s.Etiket.Naam.Contains(searchString)
+                                       || s.Etiket.Soort.ToString().Contains(searchString)
+                                       || s.Etiket.ProductieGebied.Contains(searchString)
+                                       || s.Etiket.AlcoholPercentage.ToString().Contains(searchString)
+                                       || s.Leeftijd.ToString().Contains(searchString)).ToList();
+            }
+
+            return View(data);
         }
 
 

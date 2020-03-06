@@ -19,5 +19,6 @@ namespace Slijterij_Sjonnie.ViewModels
         public int SelectEtiketId { get; set; }
         public string Naam { get; set; }
         public int Id { get; set; }
+        public ICollection<Whisky> Whiskies { get; set; }
     }
 }

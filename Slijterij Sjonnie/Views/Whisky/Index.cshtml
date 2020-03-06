@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Slijterij_Sjonnie.Models.Whisky>
+﻿@model Slijterij_Sjonnie.ViewModels.WhiskyViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,38 +7,62 @@
 
 @Html.Partial("_WhiskyDashboardPartial")
 
-<div class="container bg-body-content">
-    <div class="card">
-        <div class="card-body">
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Leeftijd)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Aantal)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
+    <div class="container bg-body-content">
+        <div class="card">
+            <div class="card-body">
+                @using (Html.BeginForm())
                 {
+                    <p>
+                        Find by name: @Html.TextBox("SearchString")
+                        <input type="submit" value="Search" />
+                    </p>
+                }
+                <table style="margin-top: 10px;" class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                Naam
+                            </th>
+                            <th>
+                                Soort
+                            </th>
+                            <th>
+                                Productiegebied
+                            </th>
+                            <th>
+                                Leeftijd
+                            </th>
+                            <th>
+                                Alcoholpercentage
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model.Whiskies)
+                        {
                     <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Etiket.Naam)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Etiket.Soort)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Etiket.ProductieGebied)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Leeftijd)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Aantal)
+                            @Html.DisplayFor(modelItem => item.Etiket.AlcoholPercentage)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id, }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
                         </td>
                     </tr>
-                }
+                        }
 
-            </table>
+                </table>
+            </div>
         </div>
     </div>
-</div>

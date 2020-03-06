@@ -54,40 +54,6 @@ namespace Slijterij_Sjonnie.Controllers
         [HttpPost]
         public ActionResult Reservering(string searchString)
         {
-            //if (!User.Identity.IsAuthenticated)
-            //{
-            //    return View("~/Views/Account/Login.cshtml");
-            //}
-            //if (id != null)
-            //{
-            //    var test = model;
-            //    Reservering reservering = new Reservering();
-            //    if (model.Aantal == 0)
-            //    {
-            //        //moet een notificatie komen
-            //        return View();
-            //    }
-
-
-
-            //    reservering.Aantal = model.Aantal;
-            //    reservering.Datum = DateTime.Now;
-            //    reservering.Whisky = db.Whiskies.FirstOrDefault(x => x.Id == id);
-            //    reservering.UserId = User.Identity.GetUserId();
-
-            //    Whisky whisky = db.Whiskies.FirstOrDefault(x => x.Id == id);
-
-            //    whisky.Aantal = whisky.Aantal - model.Aantal;
-
-            //    db.Entry(whisky).State = EntityState.Modified;
-
-            //    db.Reserveringen.Add(reservering);
-            //    db.SaveChanges();
-
-            //    return RedirectToAction("Reserveringen");
-            //}
-
-            //return View(db.Whiskies.Include(x => x.Etiket).ToList());
 
             ReserveringViewModel data = new ReserveringViewModel();
             data.Whiskies = db.Whiskies.Include(x => x.Etiket).ToList();
@@ -113,6 +79,45 @@ namespace Slijterij_Sjonnie.Controllers
             data.Whisky = db.Whiskies.Include(x => x.Etiket).FirstOrDefault(x => x.Id == id);
             data.UserId = User.Identity.GetUserId();
             return View(data);
+        }
+        
+        [HttpPost]
+        public ActionResult Reserveer(int id, ReserveringViewModel model)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return View("~/Views/Account/Login.cshtml");
+            }
+            if (id != null)
+            {
+                var test = model;
+                Reservering reservering = new Reservering();
+                if (model.Aantal == 0)
+                {
+                    //moet een notificatie komen
+                    return View();
+                }
+
+
+
+                reservering.Aantal = model.Aantal;
+                reservering.Datum = DateTime.Now;
+                reservering.Whisky = db.Whiskies.FirstOrDefault(x => x.Id == id);
+                reservering.UserId = User.Identity.GetUserId();
+
+                Whisky whisky = db.Whiskies.FirstOrDefault(x => x.Id == id);
+
+                whisky.Aantal = whisky.Aantal - model.Aantal;
+
+                db.Entry(whisky).State = EntityState.Modified;
+
+                db.Reserveringen.Add(reservering);
+                db.SaveChanges();
+
+                return RedirectToAction("Reserveringen");
+            }
+
+            return View(db.Whiskies.Include(x => x.Etiket).ToList());
         }
     }
 }
