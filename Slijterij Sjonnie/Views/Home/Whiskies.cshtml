@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Slijterij_Sjonnie.Models.Whisky>
+@{
+    ViewBag.Title = "Whiskies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_DashboardPartial")
+
+<div class="container bg-body-content">
+
+    <div class="row">
+        <!--Grid row-->
+
+        @foreach (var item in Model)
+        {
+
+
+            <div style="margin-bottom: 25px;" class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-lg-6 mb-lg-0 mb-md-4">
+
+
+
+                                <!--Image-->
+                                <div class="view overlay z-depth-1-half">
+                                    <img style="max-height: 275px;" src="@Url.Content(item.Etiket.AfbeeldingPath)" class="img-fluid"
+                                         alt="">
+                                    <a href="#">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                    @if (item.Aantal > 0)
+                                    {
+                                        <div class="input-group" style="margin-top: 10px;">
+                                            <span style="color: green;">@item.Aantal op voorraad</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="input-group" style="margin-top: 10px;">
+                                            <span style="color: red;">Niet op voorraad</span>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6 pre-scrollable">
+
+                                @{ var leeftijd = DateTime.Now.Year - item.Leeftijd.Year; }
+
+                                <h3 class="font-weight-bold">@item.Etiket.Naam</h3>
+
+                                <span class="text-black-50">Naam:</span><p class="text-muted"> @item.Etiket.Naam</p>
+                                <span class="text-black-50">Soort:</span><p class="text-muted"> @item.Etiket.Soort</p>
+                                <span class="text-black-50">Productiegebied:</span><p class="text-muted"> @item.Etiket.ProductieGebied</p>
+                                <span class="text-black-50">Leeftijd:</span><p class="text-muted"> @leeftijd</p>
+                                <span class="text-black-50">Alcoholpercentage:</span><p class="text-muted"> @item.Etiket.AlcoholPercentage</p>
+                                <span class="text-black-50">Prijs:</span><p class="text-muted"> €@item.Etiket.Prijs</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+        <!--Grid row-->
+
+    </div>
+</div>
+

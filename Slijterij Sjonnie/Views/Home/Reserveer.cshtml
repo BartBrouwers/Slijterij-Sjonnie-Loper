@@ -1,0 +1,103 @@
+﻿@model Slijterij_Sjonnie.ViewModels.ReserveringViewModel
+@{
+    ViewBag.Title = "Reserveer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    
+    <script>
+        function calc() {
+            var aantal = document.getElementById("num_of_whisky").value;
+            var total = parseFloat(@Model.Whisky.Etiket.Prijs) * aantal
+            if (!isNaN(total))
+            document.getElementById("total").innerHTML = total
+        }
+    </script>
+
+    <div class="container bg-body-content">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-lg-6 mb-lg-0 mb-md-4">
+
+
+
+                                <!--Image-->
+                                <div class="view overlay z-depth-1-half">
+                                    <img style="max-height: 275px;" src="@Url.Content(Model.Whisky.Etiket.AfbeeldingPath)" class="img-fluid"
+                                         alt="">
+                                    <a href="#">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                    @if (Model.Whisky.Aantal > 0)
+                                    {
+                                        <div class="input-group" style="margin-top: 10px;">
+                                            <span style="color: green;">@Model.Whisky.Aantal op voorraad</span>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="input-group" style="margin-top: 10px;">
+                                            <span style="color: red;">Niet op voorraad</span>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6 pre-scrollable">
+
+                                @{ var leeftijd = DateTime.Now.Year - Model.Whisky.Leeftijd.Year; }
+
+                                <h3 class="font-weight-bold">@Model.Whisky.Etiket.Naam</h3>
+
+                                <span class="text-black-50">Naam:</span><p class="text-muted"> @Model.Whisky.Etiket.Naam</p>
+                                <span class="text-black-50">Soort:</span><p class="text-muted"> @Model.Whisky.Etiket.Soort</p>
+                                <span class="text-black-50">Productiegebied:</span><p class="text-muted"> @Model.Whisky.Etiket.ProductieGebied</p>
+                                <span class="text-black-50">Leeftijd:</span><p class="text-muted"> @leeftijd</p>
+                                <span class="text-black-50">Alcoholpercentage:</span><p class="text-muted"> @Model.Whisky.Etiket.AlcoholPercentage</p>
+                                <span class="text-black-50">Prijs:</span><p class="text-muted"> €@Model.Whisky.Etiket.Prijs</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="text-center font-weight-bold mb-4">Overview</h1>
+                        <hr>
+
+                        @using (Html.BeginForm(new { id = Model.Whisky.Id, @class = "form-inline" }))
+                        {
+
+                            <h3>Aantal</h3>
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.Aantal, new { htmlAttributes = new { @class = "form-control", style = "margin-right: 5px;", min = 0, max = Model.Whisky.Aantal, type = "number", id = "num_of_whisky", oninput = "calc()" } })
+                                @Html.ValidationMessageFor(model => model.Aantal, "", new { @class = "text-danger" })
+                            </div>
+                            <br />
+                            <p>Totaal: </p><b>€<span id="total">0</span></b>
+                            <hr />
+                            <div class="form-group">
+                                <input type="submit" value="Reserveer" class="btn btn-primary" />
+                            </div>
+
+                        }
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+</div>
+
